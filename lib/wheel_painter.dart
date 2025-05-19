@@ -55,7 +55,7 @@ class WheelPainter extends CustomPainter {
           text: prizes[i].label,
           style: prizes[i].style ??
               TextStyle(
-                fontSize: 12,
+                fontSize: 14,
                 fontWeight: FontWeight.bold,
                 color: primaryColor,
               ),

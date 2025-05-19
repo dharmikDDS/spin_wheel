@@ -35,7 +35,7 @@ class _SpinWheelScreenState extends State<SpinWheelScreen>
       label: "FREE MEAL!",
       color: secondaryColor,
       style: TextStyle(
-          fontSize: 13, fontWeight: FontWeight.bold, color: primaryColor),
+          fontSize: 16, fontWeight: FontWeight.bold, color: primaryColor),
     ),
     PrizeItem(label: "5% Off Your Order", color: yellowStatColor),
     PrizeItem(label: "5% Off Your Order", color: secondaryColor),
@@ -44,7 +44,7 @@ class _SpinWheelScreenState extends State<SpinWheelScreen>
       label: "FREE MEAL!",
       color: secondaryColor,
       style: TextStyle(
-          fontSize: 13, fontWeight: FontWeight.bold, color: primaryColor),
+          fontSize: 16, fontWeight: FontWeight.bold, color: primaryColor),
     ),
     PrizeItem(label: "5% Off Your Order", color: yellowStatColor),
     PrizeItem(label: "5% Off Your Order", color: secondaryColor),
@@ -53,7 +53,7 @@ class _SpinWheelScreenState extends State<SpinWheelScreen>
       label: "FREE MEAL!",
       color: secondaryColor,
       style: TextStyle(
-          fontSize: 13, fontWeight: FontWeight.bold, color: primaryColor),
+          fontSize: 16, fontWeight: FontWeight.bold, color: primaryColor),
     ),
     PrizeItem(label: "5% Off Your Order", color: yellowStatColor),
     PrizeItem(label: "5% Off Your Order", color: secondaryColor),
@@ -62,7 +62,7 @@ class _SpinWheelScreenState extends State<SpinWheelScreen>
       label: "FREE MEAL!",
       color: secondaryColor,
       style: TextStyle(
-          fontSize: 13, fontWeight: FontWeight.bold, color: primaryColor),
+          fontSize: 16, fontWeight: FontWeight.bold, color: primaryColor),
     ),
   ];
 
@@ -176,15 +176,15 @@ class _SpinWheelScreenState extends State<SpinWheelScreen>
           _buildHeadingView(),
           // Spin wheel
           Positioned(
-            bottom: -35,
-            right: -10,
-            left: -10,
+            right: -100,
+            left: -100,
+            bottom: -200,
             child: Stack(
               alignment: Alignment.center,
               children: [
                 // Main wheel
                 SizedBox.square(
-                  dimension: 100,
+                  dimension: 700,
                   child: Transform.rotate(
                     angle: _animation.value * _finalAngle,
                     child: CustomPaint(
@@ -202,19 +202,27 @@ class _SpinWheelScreenState extends State<SpinWheelScreen>
                     child: CircleAvatar(
                       radius: 30,
                       backgroundColor: primaryColor,
-                      child: Icon(Icons.star),
+                      child: Icon(
+                        Icons.star,
+                        color: whiteColor,
+                        size: 40,
+                      ),
                     ),
                   ),
                 ),
                 // Pointer
                 Positioned(
-                  top: 11,
+                  top: 20,
                   child: ClipPath(
                     clipper: TriangleClipper(isRotated: true),
                     child: Material(
                       color: transparentColor,
                       elevation: 50,
-                      child: Icon(Icons.arrow_downward_rounded),
+                      child: Container(
+                        color: whiteColor,
+                        height: 70,
+                        width: 50,
+                      ),
                     ),
                   ),
                 ),
@@ -227,36 +235,34 @@ class _SpinWheelScreenState extends State<SpinWheelScreen>
   }
 
   Widget _buildHeadingView() {
-    return Column(
-      children: [
-        Align(
-          alignment: Alignment.centerLeft,
-          child: IconButton(
-            icon: Icon(Icons.keyboard_backspace, color: whiteColor),
-            onPressed: Navigator.of(context).pop,
-          ),
-        ),
-        Text(
-          "Spin to Win!",
-          style: TextStyle(
-              fontSize: 24, fontWeight: FontWeight.bold, color: whiteColor),
-        ),
-        const SizedBox(height: 20),
-        Text(
-          "Spin the wheel to win your\nweekly reward!",
-          style: TextStyle(fontSize: 16, color: whiteColor),
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(height: 20),
-        ElevatedButton(
-          onPressed: _isSpinning ? () {} : _spinWheel,
-          child: Text(
-            _isSpinning ? 'Spinning...' : 'SPIN!',
+    return SizedBox(
+      width: double.infinity,
+      child: Column(
+        spacing: 20,
+        children: [
+          const SizedBox.shrink(),
+          Text(
+            "Spin to Win!",
             style: TextStyle(
-                fontSize: 22, fontWeight: FontWeight.bold, color: primaryColor),
+                fontSize: 30, fontWeight: FontWeight.bold, color: whiteColor),
           ),
-        ),
-      ],
+          Text(
+            "Spin the wheel to win your\nweekly reward!",
+            style: TextStyle(fontSize: 16, color: whiteColor),
+            textAlign: TextAlign.center,
+          ),
+          ElevatedButton(
+            onPressed: _isSpinning ? () {} : _spinWheel,
+            child: Text(
+              _isSpinning ? 'Spinning...' : 'SPIN!',
+              style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: primaryColor),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
