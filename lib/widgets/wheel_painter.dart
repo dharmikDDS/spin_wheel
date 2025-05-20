@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:spin_wheel/shared/colors.dart';
-import 'package:spin_wheel/shared/prize_item_model.dart';
+import 'package:spin_wheel/shared/models/prize_item_model.dart';
 
 class WheelPainter extends CustomPainter {
   final List<PrizeItem> prizes;

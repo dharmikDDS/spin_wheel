@@ -2,7 +2,8 @@ import 'dart:math';
 import 'dart:developer' as d;
 
 import 'package:flutter/material.dart';
-import 'package:spin_wheel/shared/prize_item_model.dart';
+import 'package:spin_wheel/shared/models/history_model.dart';
+import 'package:spin_wheel/shared/models/prize_item_model.dart';
 
 class SpinWheelController extends ChangeNotifier {
   SpinWheelController();
@@ -12,14 +13,13 @@ class SpinWheelController extends ChangeNotifier {
   List<PrizeItem> _prizes = [];
   bool _isSpinning = false;
   double _angleToSpin = 0;
-  PrizeItem? _wonPrize;
-  List<PrizeItem> _winHistory = [];
+  final List<HistoryModel> _winHistory = [];
 
   List<PrizeItem> get prizes => _prizes;
   bool get isSpinning => _isSpinning;
   double get angleToSpin => _angleToSpin;
-  PrizeItem? get wonPrize => _wonPrize;
-  List<PrizeItem> get winHistory => _winHistory;
+  PrizeItem? get wonPrize => winHistory.last.prize;
+  List<HistoryModel> get winHistory => _winHistory;
 
   changeIsSpinning(bool newValue) {
     _isSpinning = newValue;
@@ -41,7 +41,6 @@ class SpinWheelController extends ChangeNotifier {
   }
 
   Future<void> spin() async {
-    _wonPrize = null;
     final validPrizes = prizes.where((p) => p.probability > 0).toList();
     final totalProbability =
         validPrizes.fold(0.0, (sum, p) => sum + p.probability);
@@ -66,8 +65,8 @@ class SpinWheelController extends ChangeNotifier {
     final offset =
         _random.nextDouble() * (segmentAngle * 0.8) + (segmentAngle * 0.1);
 
-    _wonPrize = selectedPrize;
-    _winHistory.add(selectedPrize);
+    final wonAt = DateTime.now();
+    _winHistory.add(HistoryModel(wonAt: wonAt, prize: selectedPrize));
     changeAngleToSpin((spinCount * 2 * pi) + targetAngle + offset);
   }
 }

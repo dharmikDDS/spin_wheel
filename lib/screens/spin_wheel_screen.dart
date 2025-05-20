@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:spin_wheel/shared/colors.dart';
 import 'package:spin_wheel/widgets/history_sheet.dart';
-import 'package:spin_wheel/shared/prize_item_model.dart';
+import 'package:spin_wheel/shared/models/prize_item_model.dart';
 import 'package:spin_wheel/controllers/spin_wheel_controller.dart';
 import 'package:spin_wheel/widgets/triangle_clipper.dart';
 import 'package:spin_wheel/widgets/wheel_painter.dart';
@@ -144,7 +144,9 @@ class _SpinWheelScreenState extends State<SpinWheelScreen>
           context: context,
           useSafeArea: true,
           isScrollControlled: true,
+          enableDrag: true,
           showDragHandle: true,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
           builder: (_) => HistorySheet(),
         ),
         child: Icon(Icons.history_rounded),
