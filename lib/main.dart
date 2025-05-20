@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:spin_wheel/spin_wheel_controller.dart';
-import 'package:spin_wheel/spin_wheel_screen.dart';
+import 'package:spin_wheel/controllers/spin_wheel_controller.dart';
+import 'package:spin_wheel/screens/spin_wheel_screen.dart';
 
 void main() {
   runApp(const MyApp());

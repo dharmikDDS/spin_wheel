@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:spin_wheel/colors.dart';
-import 'package:spin_wheel/prize_item_model.dart';
+import 'package:spin_wheel/shared/colors.dart';
+import 'package:spin_wheel/shared/prize_item_model.dart';
 
 class WheelPainter extends CustomPainter {
   final List<PrizeItem> prizes;
@@ -76,7 +76,7 @@ class WheelPainter extends CustomPainter {
 
       // Position text to start near center and run toward edge
       // First measure text width to calculate proper positioning
-      final double textStartRadius = radius * 0.25;
+      final double textStartRadius = radius * 0.30;
 
       // Paint the text
       canvas.translate(textStartRadius, -textPainter.height / 2);

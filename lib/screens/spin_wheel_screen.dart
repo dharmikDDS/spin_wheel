@@ -2,11 +2,12 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:spin_wheel/colors.dart';
-import 'package:spin_wheel/prize_item_model.dart';
-import 'package:spin_wheel/spin_wheel_controller.dart';
-import 'package:spin_wheel/triangle_clipper.dart';
-import 'package:spin_wheel/wheel_painter.dart';
+import 'package:spin_wheel/shared/colors.dart';
+import 'package:spin_wheel/widgets/history_sheet.dart';
+import 'package:spin_wheel/shared/prize_item_model.dart';
+import 'package:spin_wheel/controllers/spin_wheel_controller.dart';
+import 'package:spin_wheel/widgets/triangle_clipper.dart';
+import 'package:spin_wheel/widgets/wheel_painter.dart';
 
 class SpinWheelScreen extends StatefulWidget {
   const SpinWheelScreen({super.key});
@@ -137,6 +138,16 @@ class _SpinWheelScreenState extends State<SpinWheelScreen>
             ),
           );
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => showModalBottomSheet(
+          context: context,
+          useSafeArea: true,
+          isScrollControlled: true,
+          showDragHandle: true,
+          builder: (_) => HistorySheet(),
+        ),
+        child: Icon(Icons.history_rounded),
       ),
     );
   }

@@ -2,7 +2,7 @@ import 'dart:math';
 import 'dart:developer' as d;
 
 import 'package:flutter/material.dart';
-import 'package:spin_wheel/prize_item_model.dart';
+import 'package:spin_wheel/shared/prize_item_model.dart';
 
 class SpinWheelController extends ChangeNotifier {
   SpinWheelController();
@@ -13,11 +13,13 @@ class SpinWheelController extends ChangeNotifier {
   bool _isSpinning = false;
   double _angleToSpin = 0;
   PrizeItem? _wonPrize;
+  List<PrizeItem> _winHistory = [];
 
   List<PrizeItem> get prizes => _prizes;
   bool get isSpinning => _isSpinning;
   double get angleToSpin => _angleToSpin;
   PrizeItem? get wonPrize => _wonPrize;
+  List<PrizeItem> get winHistory => _winHistory;
 
   changeIsSpinning(bool newValue) {
     _isSpinning = newValue;
@@ -65,6 +67,7 @@ class SpinWheelController extends ChangeNotifier {
         _random.nextDouble() * (segmentAngle * 0.8) + (segmentAngle * 0.1);
 
     _wonPrize = selectedPrize;
+    _winHistory.add(selectedPrize);
     changeAngleToSpin((spinCount * 2 * pi) + targetAngle + offset);
   }
 }

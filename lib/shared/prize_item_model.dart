@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:spin_wheel/colors.dart';
+import 'package:spin_wheel/shared/colors.dart';
 
 class PrizeItem {
   final int index;
@@ -20,7 +20,7 @@ enum PrizeItemType { guaranteed, special }
 
 extension PrizeItemToPaint on PrizeItem {
   TextStyle get style => TextStyle(
-        fontSize: type == PrizeItemType.special ? 16 : 14,
+        fontSize: type == PrizeItemType.special ? 17 : 16,
         fontWeight: FontWeight.bold,
         color: primaryColor,
       );
