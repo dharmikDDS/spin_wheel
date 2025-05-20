@@ -20,7 +20,7 @@ class WheelPainter extends CustomPainter {
 
     canvas.save();
     canvas.translate(centerX, centerY);
-    canvas.rotate(-pi / 2);
+    canvas.rotate(pi / 2);
     canvas.translate(-centerX, -centerY);
 
     // Draw each segment

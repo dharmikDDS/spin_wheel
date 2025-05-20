@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:developer' as d;
 
 import 'package:flutter/material.dart';
 import 'package:spin_wheel/prize_item_model.dart';
@@ -32,22 +33,8 @@ class SpinWheelController extends ChangeNotifier {
     notifyListeners();
   }
 
-  void initPrizes({
-    required String guaranteedPrize,
-    required String specialPrize,
-  }) {
-    _prizes = List.generate(
-      16,
-      (i) {
-        final bool isSpecial = (i + 1) % 4 == 0;
-        return PrizeItem(
-          index: i,
-          label: isSpecial ? specialPrize : guaranteedPrize,
-          probability: isSpecial ? 0 : .75,
-          type: isSpecial ? PrizeItemType.special : PrizeItemType.guaranteed,
-        );
-      },
-    );
+  void initPrizes(List<PrizeItem> prizes) {
+    _prizes = prizes;
     notifyListeners();
   }
 
@@ -70,6 +57,7 @@ class SpinWheelController extends ChangeNotifier {
       }
     }
 
+    d.log("selected prize index => ${selectedPrize.index}");
     final segmentAngle = 2 * pi / prizes.length;
     final spinCount = 3 + _random.nextInt(3);
     final targetAngle = (2 * pi) - (segmentAngle * (selectedPrize.index + 1));

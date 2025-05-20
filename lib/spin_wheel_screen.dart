@@ -30,12 +30,7 @@ class _SpinWheelScreenState extends State<SpinWheelScreen>
 
     // Initialize Prizes
     WidgetsBinding.instance.addPostFrameCallback(
-      (_) {
-        context.read<SpinWheelController>().initPrizes(
-              guaranteedPrize: '5% off your order',
-              specialPrize: '100% off your Order',
-            );
-      },
+      (_) => context.read<SpinWheelController>().initPrizes(dummyPrizes),
     );
   }
 
@@ -77,6 +72,7 @@ class _SpinWheelScreenState extends State<SpinWheelScreen>
         builder: (context, controller, _) {
           return SafeArea(
             child: Stack(
+              alignment: Alignment.bottomCenter,
               children: [
                 _buildHeadingView(controller),
 
@@ -84,13 +80,13 @@ class _SpinWheelScreenState extends State<SpinWheelScreen>
                 Positioned(
                   right: -100,
                   left: -100,
-                  bottom: -200,
+                  top: -200,
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
                       // Main wheel
                       SizedBox.square(
-                        dimension: 700,
+                        dimension: 800,
                         child: Transform.rotate(
                           angle: _animation.value * controller.angleToSpin,
                           child: CustomPaint(
@@ -120,9 +116,9 @@ class _SpinWheelScreenState extends State<SpinWheelScreen>
 
                       // Pointer
                       Positioned(
-                        top: 20,
+                        bottom: 60,
                         child: ClipPath(
-                          clipper: TriangleClipper(isRotated: true),
+                          clipper: TriangleClipper(),
                           child: Material(
                             color: transparentColor,
                             elevation: 50,
@@ -149,9 +145,9 @@ class _SpinWheelScreenState extends State<SpinWheelScreen>
     return SizedBox(
       width: double.infinity,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
         spacing: 20,
         children: [
-          const SizedBox.shrink(),
           Text(
             "Spin to Win!",
             style: TextStyle(
@@ -180,6 +176,7 @@ class _SpinWheelScreenState extends State<SpinWheelScreen>
               ),
             ),
           ),
+          const SizedBox.shrink(),
         ],
       ),
     );
