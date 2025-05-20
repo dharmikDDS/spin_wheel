@@ -18,12 +18,17 @@ class WheelPainter extends CustomPainter {
     final Paint paint = Paint()..style = PaintingStyle.fill;
     final segmentAngle = 2 * pi / prizes.length;
 
+    canvas.save();
+    canvas.translate(centerX, centerY);
+    canvas.rotate(-pi / 2);
+    canvas.translate(-centerX, -centerY);
+
     // Draw each segment
     for (int i = 0; i < prizes.length; i++) {
       final startAngle = i * segmentAngle;
 
       // Set segment color
-      paint.color = prizes[i].color;
+      paint.color = prizes[i].bgColor;
 
       // Draw segment
       canvas.drawArc(
@@ -53,12 +58,7 @@ class WheelPainter extends CustomPainter {
       final textPainter = TextPainter(
         text: TextSpan(
           text: prizes[i].label,
-          style: prizes[i].style ??
-              TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                color: primaryColor,
-              ),
+          style: prizes[i].style,
         ),
         textAlign: TextAlign.center,
         textDirection: TextDirection.ltr,
@@ -94,6 +94,8 @@ class WheelPainter extends CustomPainter {
         dotPaint,
       );
     }
+
+    canvas.restore();
   }
 
   @override
