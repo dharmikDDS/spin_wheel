@@ -57,7 +57,7 @@ class WheelPainter extends CustomPainter {
       // Draw text from center to outer edge
       final textPainter = TextPainter(
         text: TextSpan(
-          text: prizes[i].label,
+          text: prizes[i].label.toUpperCase(),
           style: prizes[i].style,
         ),
         textAlign: TextAlign.center,

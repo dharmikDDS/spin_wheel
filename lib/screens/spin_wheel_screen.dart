@@ -6,8 +6,8 @@ import 'package:spin_wheel/shared/colors.dart';
 import 'package:spin_wheel/widgets/history_sheet.dart';
 import 'package:spin_wheel/shared/models/prize_item_model.dart';
 import 'package:spin_wheel/controllers/spin_wheel_controller.dart';
-import 'package:spin_wheel/widgets/triangle_clipper.dart';
-import 'package:spin_wheel/widgets/wheel_painter.dart';
+import 'package:spin_wheel/shared/clippers/triangle_clipper.dart';
+import 'package:spin_wheel/shared/painters/wheel_painter.dart';
 
 class SpinWheelScreen extends StatefulWidget {
   const SpinWheelScreen({super.key});
@@ -125,8 +125,8 @@ class _SpinWheelScreenState extends State<SpinWheelScreen>
                             elevation: 50,
                             child: Container(
                               color: whiteColor,
-                              height: 70,
-                              width: 50,
+                              height: 50,
+                              width: 40,
                             ),
                           ),
                         ),
